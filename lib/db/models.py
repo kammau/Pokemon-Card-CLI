@@ -7,5 +7,11 @@ from sqlalchemy.ext.declarative import declarative_base #
 Base = declarative_base(metadata=metadata)
 
 class Player(Base):
+    __tablename__ = "players"
+
+    id = Column(Integer(), primary_key=True)
+    name = Column(String)
+    # add more
+
     
 
