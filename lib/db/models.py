@@ -13,5 +13,11 @@ class Player(Base):
     name = Column(String)
     # add more
 
-    
+class Card(Base):
+    __tablename__ = "cards"
+
+    id = Column(Integer(), primary_key=True)
+    name = Column(String())
+    set_name = Column(String())
+    hp = Column(Integer())
 
