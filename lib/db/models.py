@@ -2,7 +2,11 @@ from sqlalchemy import ForeignKey, Column, Integer, String, Metadata #
 from sqlalchemy.orm import relationship, backref #
 from sqlalchemy.ext.declarative import declarative_base #
 
-# metadata = MetaData(naming_convention=convention)
+convention = {
+    "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
+}
+
+metadata = MetaData(naming_convention=convention)
 
 Base = declarative_base(metadata=metadata)
 
@@ -27,5 +31,4 @@ class Card(Base):
             f'set_name={self.set_name}, ' + \
             f'hp={self.hp})'
         
-
 
