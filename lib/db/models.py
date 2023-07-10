@@ -33,4 +33,10 @@ class Card(Base):
             f'set_name={self.set_name}, ' + \
             f'hp={self.hp})'
         
+class Deck(Base):
+    __tablename__ = "decks"
+
+    id = Column(Integer(), primary_key=True)
+    name = Column(String())
+    # maybe do rating column
 
