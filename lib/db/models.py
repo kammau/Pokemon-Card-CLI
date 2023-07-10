@@ -17,6 +17,8 @@ class Player(Base):
     name = Column(String)
     # add more
 
+    cards = relationship("Card", backref=backref('player'))
+
 class Card(Base):
     __tablename__ = "cards"
 
