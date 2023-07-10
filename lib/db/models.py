@@ -21,3 +21,11 @@ class Card(Base):
     set_name = Column(String())
     hp = Column(Integer())
 
+    def __repr__(self):
+        return f'Card(id={self.id}, ' + \
+            f'name={self.name}, ' + \
+            f'set_name={self.set_name}, ' + \
+            f'hp={self.hp})'
+        
+
+
