@@ -1,4 +1,4 @@
-from sqlalchemy import ForeignKey, Column, Integer, String, Metadata #
+from sqlalchemy import ForeignKey, Column, Integer, String, MetaData #
 from sqlalchemy.orm import relationship, backref #
 from sqlalchemy.ext.declarative import declarative_base #
 
@@ -30,7 +30,7 @@ class Card(Base):
     name = Column(String())
     set_name = Column(String())
     hp = Column(Integer())
-    player_id = Column(Integer(), ForeignKey("students.id"))
+    player_id = Column(Integer(), ForeignKey("players.id"))
 
     def __repr__(self):
         return f'Card(id={self.id}, ' + \
@@ -43,7 +43,7 @@ class Deck(Base):
 
     id = Column(Integer(), primary_key=True)
     name = Column(String())
-    # maybe do rating column
+    player_id = Column(Integer(), ForeignKey("players.id"))
 
     def __repr__(self):
         return f'Deck(id={self.id}, ' + \
