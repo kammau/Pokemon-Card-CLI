@@ -16,6 +16,7 @@ class Player(Base):
     id = Column(Integer(), primary_key=True)
     first_name = Column(String())
     last_name = Column(String())
+    level = Column(String())
 
     cards = relationship("Card", backref=backref('player'))
 
