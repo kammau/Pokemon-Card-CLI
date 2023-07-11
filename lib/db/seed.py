@@ -12,10 +12,12 @@ if __name__ == '__main__':
     engine = create_engine('sqlite:///collection.db')
     Session = sessionmaker(bind=engine)
     session = Session()
-
-    # add delete
-
     fake = Faker()
+
+    # Delete records:
+    session.query(Player).delete()
+    session.query(Card).delete()
+    session.query(Deck).delete()
 
     levels = ["Beginner", "Intermediate", "Advanced"]
 
@@ -31,3 +33,16 @@ if __name__ == '__main__':
         session.commit()
 
         players.append(player)
+
+    cards = []
+    for i in range(50):
+        card = Card(
+            name=fake.unique.name(), #maybe add specific list for name?
+            set_name=fake.unique.name(),
+            hp=fake.unique.random_int(min=1, max=120)
+        )
+
+        session.add(card)
+        session.commit()
+
+        cards.append(card)
