@@ -14,8 +14,8 @@ class Player(Base):
     __tablename__ = "players"
 
     id = Column(Integer(), primary_key=True)
-    name = Column(String)
-    # maybe add first name last name variants
+    first_name = Column(String())
+    last_name = Column(String())
 
     cards = relationship("Card", backref=backref('player'))
 
