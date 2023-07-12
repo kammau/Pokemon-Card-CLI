@@ -9,7 +9,7 @@ from sqlalchemy.orm import sessionmaker
 from models import Player, Card, Deck
 
 if __name__ == '__main__':
-    engine = create_engine('sqlite:///collection.db')
+    engine = create_engine('sqlite:///cards.db')
     Session = sessionmaker(bind=engine)
     session = Session()
     fake = Faker()
@@ -26,7 +26,7 @@ if __name__ == '__main__':
         player = Player(
             first_name=fake.unique.name(),
             last_name=fake.unique.name(),
-            level=random.choice(platforms)
+            level=random.choice(levels)
         )
 
         session.add(player)
@@ -37,7 +37,7 @@ if __name__ == '__main__':
     cards = []
     for i in range(50):
         card = Card(
-            name=fake.unique.name(), #maybe add specific list for name?
+            card_name=fake.unique.name(), #maybe add specific list for name?
             set_name=fake.unique.name(),
             hp=fake.unique.random_int(min=1, max=120)
         )
@@ -50,5 +50,10 @@ if __name__ == '__main__':
     decks = []
     for i in range(50):
         deck = Deck(
-            
+            deck_name=fake.unique.name()
         )
+
+        session.add(deck)
+        session.commit()
+
+        decks.append(deck)

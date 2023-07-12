@@ -19,6 +19,7 @@ class Player(Base):
     level = Column(String())
 
     cards = relationship("Card", backref=backref('player'))
+    decks = relationship("Deck", backref=backref('player'))
 
     def __repr__(self):
         return f'Player(id={self.id}, ' + \
@@ -28,7 +29,7 @@ class Card(Base):
     __tablename__ = "cards"
 
     id = Column(Integer(), primary_key=True)
-    name = Column(String())
+    card_name = Column(String())
     set_name = Column(String())
     hp = Column(Integer())
     player_id = Column(Integer(), ForeignKey("players.id"))
@@ -43,7 +44,7 @@ class Deck(Base):
     __tablename__ = "decks"
 
     id = Column(Integer(), primary_key=True)
-    name = Column(String())
+    deck_name = Column(String())
     player_id = Column(Integer(), ForeignKey("players.id"))
 
     def __repr__(self):
