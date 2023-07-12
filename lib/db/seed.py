@@ -46,3 +46,9 @@ if __name__ == '__main__':
         session.commit()
 
         cards.append(card)
+
+    decks = []
+    for i in range(50):
+        deck = Deck(
+            
+        )
