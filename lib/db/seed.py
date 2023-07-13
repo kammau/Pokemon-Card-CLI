@@ -39,7 +39,8 @@ if __name__ == '__main__':
         card = Card(
             card_name=fake.unique.name(), #maybe add specific list for name?
             set_name=fake.unique.name(),
-            hp=fake.unique.random_int(min=1, max=120)
+            hp=fake.unique.random_int(min=1, max=120),
+            player_id=fake.random_int(min=1, max=50)
         )
 
         session.add(card)
@@ -50,10 +51,13 @@ if __name__ == '__main__':
     decks = []
     for i in range(50):
         deck = Deck(
-            deck_name=fake.unique.name()
+            deck_name=fake.unique.name(),
+            player_id=fake.random_int(min=1, max=50)
         )
 
         session.add(deck)
         session.commit()
 
         decks.append(deck)
+    
+    session.close()
