@@ -24,8 +24,8 @@ if __name__ == '__main__':
     players = []
     for i in range(50):
         player = Player(
-            first_name=fake.unique.name(),
-            last_name=fake.unique.name(),
+            first_name=fake.unique.first_name(),
+            last_name=fake.unique.last_name(),
             level=random.choice(levels)
         )
 
