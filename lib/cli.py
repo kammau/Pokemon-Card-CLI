@@ -38,8 +38,7 @@ class PokemonCli:
         print(f"Welcome back {user}! Please select an option:")
         options = input('1) Look through collection \n'
             '2) Add new item to collection \n'
-            '3) Remove an item from your collection \n'
-            '4) ')
+            '3) Remove an item from your collection \n')
         
         if options == "1":
             self.read_collection()
