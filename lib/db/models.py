@@ -35,7 +35,7 @@ class Card(Base):
 
     def __repr__(self):
         return f'Card(id={self.id}, ' + \
-            f'name={self.name}, ' + \
+            f'card_name={self.card_name}, ' + \
             f'set_name={self.set_name}, ' + \
             f'hp={self.hp})'
         
