@@ -4,6 +4,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from db.models import Player, Card, Deck
 
+from subfunctions.cardSubfunctions import (add_new_card, update_card, remove_card)
+
 def add_data(info):
     session.add(info)
     session.commit()
@@ -37,14 +39,14 @@ class PokemonCli:
         print(f"Welcome back {user}! Please select an option:")
         options = input('1) Look through card collection \n'
             '2) Look through Deck collection \n'
-            '3) Edit profile \n')
+            '3) Quit program \n')
         
         if options == "1":
             self.card_collection(user)
         elif options == "2":
             self.deck_collection(user)
         elif options == "3":
-            self.edit_profile(user)
+            print(f"Have a good day {user}!")
         else:
             print("Please type a number!")
         
@@ -61,7 +63,11 @@ class PokemonCli:
             "(u) Update a card \n"
             "(r) Remove a card \n"
             "(a) Add a card \n"
-            "(q) Quit program \n")
+            "(m) Go to main menu \n")
+        
+        if options == "a":
+            # add_new_card()
+            print(user)
             
 
     
