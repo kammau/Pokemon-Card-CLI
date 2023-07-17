@@ -19,7 +19,6 @@ class PokemonCli:
         user = input("Please enter your username: ") #decide between username and name!
         usernames = [name.username for name in self.player]
         if user in usernames:
-            print("")
             self.main_menu(user)
         else:
             sign_up = input("Looks like your new here, do you want to sign up? (y/n) ")
@@ -41,14 +40,28 @@ class PokemonCli:
             '3) Remove an item from your collection \n')
         
         if options == "1":
-            self.read_collection()
+            self.read_collection(user)
         elif options == "2":
-            self.add_to_collection()
+            self.add_to_collection(user)
         elif options == "3":
-            self.delete_from_collection()
+            self.delete_from_collection(user)
         else:
             print("Please type a number!")
         
+    def read_collection(self, user):
+        user_id = [player.id for player in session.query(Player) if player.username == user]
+        cards = [card.card_name for card in session.query(Card) if card.player_id in user_id]
+        options = input("Would you like to search through your Cards (c) or Decks (d)?: ")
+        if options == "c":
+            print(cards)
+            
+
+    
+    def add_to_collection(self, user):
+        pass
+    
+    def delete_from_collection(self, user):
+        pass
 
 if __name__ == "__main__":
     engine = create_engine("sqlite:///db/cards.db") # home base for the database
