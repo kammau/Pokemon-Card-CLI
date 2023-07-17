@@ -35,32 +35,40 @@ class PokemonCli:
 
     def main_menu(self, user): #***COME BACK TO ADD UPDATE (crUd)***
         print(f"Welcome back {user}! Please select an option:")
-        options = input('1) Look through collection \n'
-            '2) Add new item to collection \n'
-            '3) Remove an item from your collection \n')
+        options = input('1) Look through card collection \n'
+            '2) Look through Deck collection \n'
+            '3) Edit profile \n')
         
         if options == "1":
-            self.read_collection(user)
+            self.card_collection(user)
         elif options == "2":
-            self.add_to_collection(user)
+            self.deck_collection(user)
         elif options == "3":
-            self.delete_from_collection(user)
+            self.edit_profile(user)
         else:
             print("Please type a number!")
         
-    def read_collection(self, user):
+    def card_collection(self, user):
         user_id = [player.id for player in session.query(Player) if player.username == user]
-        cards = [card.card_name for card in session.query(Card) if card.player_id in user_id]
-        options = input("Would you like to search through your Cards (c) or Decks (d)?: ")
-        if options == "c":
-            print(cards)
+        cards = [card for card in session.query(Card) if card.player_id in user_id]
+        print(f"Here are all the cards in you collection {user}: \n")
+        for card in cards:
+            print(f"Card ID: {card.id} \n"
+            f"Card Name: {card.card_name} \n"
+            f"HP: {card.hp} \n"
+            f"Set: {card.set_name} \n")
+        options = input("What would you like to do next?: \n"
+            "(u) Update a card \n"
+            "(r) Remove a card \n"
+            "(a) Add a card \n"
+            "(q) Quit program \n")
             
 
     
-    def add_to_collection(self, user):
+    def deck_collection(self, user):
         pass
     
-    def delete_from_collection(self, user):
+    def edit_profile(self, user):
         pass
 
 if __name__ == "__main__":
