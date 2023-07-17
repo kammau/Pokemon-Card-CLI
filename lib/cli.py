@@ -10,14 +10,14 @@ def add_data(info):
 
 class PokemonCli:
     def __init__(self):
-        self.player = [player for player in session.query(Player)]
-        self.card = [card for card in session.query(Card)]
-        self.deck = [deck for deck in session.query(Deck)]
+        # self.player = [player for player in session.query(Player)]
+        # self.card = [card for card in session.query(Card)]
+        # self.deck = [deck for deck in session.query(Deck)]
         self.login()
 
     def login(self):
-        user = input("Please enter your username: ") #decide between username and name!
-        usernames = [name.username for name in self.player]
+        user = input("Please enter your username: ")
+        usernames = [name.username for name in session.query(Player)]
         if user in usernames:
             self.main_menu(user)
         else:
@@ -66,7 +66,12 @@ class PokemonCli:
 
     
     def deck_collection(self, user):
-        pass
+        user_id = [player.id for player in session.query(Player) if player.username == user]
+        decks = [deck for deck in session.query(Deck) if deck.player_id in user_id]
+        print(f"Here are all the decks in your collection {user}: \n")
+        for deck in decks:
+            print(f"Deck ID: {deck.id} \n"
+            f"Deck Name: {deck.deck_name} \n")
     
     def edit_profile(self, user):
         pass
