@@ -48,5 +48,5 @@ class Deck(Base):
 
     def __repr__(self):
         return f'Deck(id={self.id}, ' + \
-            f'name={self.name}'
+            f'name={self.deck_name}'
 
