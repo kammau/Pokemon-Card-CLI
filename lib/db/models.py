@@ -29,14 +29,14 @@ class Card(Base):
 
     id = Column(Integer(), primary_key=True)
     card_name = Column(String())
-    set_name = Column(String())
+    pokemon_type = Column(String())
     hp = Column(Integer())
     player_id = Column(Integer(), ForeignKey("players.id"))
 
     def __repr__(self):
         return f'Card(id={self.id}, ' + \
             f'card_name={self.card_name}, ' + \
-            f'set_name={self.set_name}, ' + \
+            f'pokemon_type={self.pokemon_type}, ' + \
             f'hp={self.hp})'
         
 class Deck(Base):
