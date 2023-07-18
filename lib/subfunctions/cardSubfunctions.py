@@ -1,4 +1,5 @@
 from db.models import Player, Card, Deck
+from sqlalchemy import update
 
 def commit_card(session, info):
     session.add(info)
@@ -16,6 +17,7 @@ def add_new_card(session, user):
 
 def update_card(session, user):
     card_id = input("What is the Card ID of the card you would like to update?: ")
+    cards_info = (session.query(Card).get(card_id))
     choice = input("What would you like to change/update on this card?: \n"
     "(n) Card Name \n"
     "(t) Card Type \n"
@@ -23,9 +25,12 @@ def update_card(session, user):
 
     if choice == "n":
         new_name = input("What would you like to change the cards name to?: ")
-        print(session.query(Card).get(card_id).card_name)
+        cards_info.card_name = new_name
+        session.commit()
 
-        # commit_card(session, session.query(Card).get(user))
+        print(f"Your cards name has been sucessfully updated to {new_name}!")
+    elif choice == "t":
+
 
 
 
