@@ -50,4 +50,6 @@ def update_card(session, user):
 
 
 def remove_card(session, user):
-    pass
+    card_id = input("What is the Card ID of the card you would like to remove?: ")
+    session.query(Card).get(card_id).delete()
+    session.commit()

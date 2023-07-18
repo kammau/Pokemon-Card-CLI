@@ -69,6 +69,8 @@ class PokemonCli:
             add_new_card(session, user_id)
         elif options == "u":
             update_card(session, user_id)
+        elif options == "r":
+            remove_card(session, user_id)
         elif options == "m":
             main_menu(user)
             
