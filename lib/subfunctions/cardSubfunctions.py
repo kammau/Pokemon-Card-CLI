@@ -1,5 +1,5 @@
 from db.models import Player, Card, Deck
-from sqlalchemy import update
+from sqlalchemy import delete
 
 def commit_card(session, info):
     session.add(info)
@@ -51,5 +51,7 @@ def update_card(session, user):
 
 def remove_card(session, user):
     card_id = input("What is the Card ID of the card you would like to remove?: ")
-    session.query(Card).get(card_id).delete()
+    card = session.query(Card).get(card_id)
+    session.delete(card)
     session.commit()
+    print(f"Card {card_id} was deleted from your collection.")
