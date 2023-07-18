@@ -12,9 +12,6 @@ def add_data(info):
 
 class PokemonCli:
     def __init__(self):
-        # self.player = [player for player in session.query(Player)]
-        # self.card = [card for card in session.query(Card)]
-        # self.deck = [deck for deck in session.query(Deck)]
         self.login()
 
     def login(self):
@@ -34,9 +31,10 @@ class PokemonCli:
         username = input("Please enter a username: ")
         level = input("Please specify a playing level (Beginner, Intermediate, Advanced): ")
         add_data(Player(level=level, username=username))
+        self.main_menu(username)
 
-    def main_menu(self, user): #***COME BACK TO ADD UPDATE (crUd)***
-        print(f"Welcome back {user}! Please select an option:")
+    def main_menu(self, user): 
+        print(f"Welcome {user}! Please select an option:")
         options = input('1) Look through card collection \n'
             '2) Look through Deck collection \n'
             '3) Quit program \n')
@@ -48,7 +46,8 @@ class PokemonCli:
         elif options == "3":
             print(f"Have a good day {user}!")
         else:
-            print("Please type a number!")
+            print("Please type a valid number! \n")
+            self.main_menu(user)
         
     def card_collection(self, user):
         user_id = [player.id for player in session.query(Player) if player.username == user]
@@ -70,6 +69,8 @@ class PokemonCli:
             add_new_card(session, user_id)
         elif options == "u":
             update_card(session, user_id)
+        elif options == "m":
+            main_menu(user)
             
 
     
