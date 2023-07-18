@@ -72,7 +72,7 @@ class PokemonCli:
         elif options == "r":
             remove_card(session, user_id)
         elif options == "m":
-            main_menu(user)
+            self.main_menu(user)
             
 
     
