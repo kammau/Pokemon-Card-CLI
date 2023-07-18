@@ -44,6 +44,7 @@ class Deck(Base):
 
     id = Column(Integer(), primary_key=True)
     deck_name = Column(String())
+    set_name=Column(String())
     player_id = Column(Integer(), ForeignKey("players.id"))
 
     def __repr__(self):
