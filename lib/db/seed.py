@@ -20,6 +20,7 @@ if __name__ == '__main__':
     session.query(Deck).delete()
 
     levels = ["Beginner", "Intermediate", "Advanced"]
+    pokemon_types = ["Fire", "Steel", "Flying", "Grass", "Electric", "Dragon"]
 
     players = []
     for i in range(50):
@@ -37,7 +38,7 @@ if __name__ == '__main__':
     for i in range(50):
         card = Card(
             card_name=fake.unique.name(), #maybe add specific list for name?
-            set_name=fake.unique.name(),
+            pokemon_type=random.choice(pokemon_types),
             hp=fake.unique.random_int(min=1, max=120),
             player_id=fake.random_int(min=1, max=50)
         )

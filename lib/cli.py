@@ -58,7 +58,8 @@ class PokemonCli:
             print(f"Card ID: {card.id} \n"
             f"Card Name: {card.card_name} \n"
             f"HP: {card.hp} \n"
-            f"Set: {card.set_name} \n")
+            f"Type: {card.pokemon_type} \n")
+
         options = input("What would you like to do next?: \n"
             "(u) Update a card \n"
             "(r) Remove a card \n"
@@ -66,8 +67,9 @@ class PokemonCli:
             "(m) Go to main menu \n")
         
         if options == "a":
-            # add_new_card()
-            print(user)
+            add_new_card(session, user_id)
+        elif options == "u":
+            update_card(session, user_id)
             
 
     
