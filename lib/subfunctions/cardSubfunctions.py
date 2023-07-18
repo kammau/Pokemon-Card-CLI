@@ -21,7 +21,7 @@ def update_card(session, user):
     choice = input("What would you like to change/update on this card?: \n"
     "(n) Card Name \n"
     "(t) Card Type \n"
-    "(hp) Card HP \n")
+    "(h) Card HP \n")
 
     if choice == "n":
         new_name = input("What would you like to change the cards name to?: ")
@@ -30,6 +30,21 @@ def update_card(session, user):
 
         print(f"Your cards name has been sucessfully updated to {new_name}!")
     elif choice == "t":
+        new_type = input("What would you like to change the cards type to?: ")
+        cards_info.pokemon_type = new_type
+        session.commit()
+        
+        print(f"You card's type has been sucessfully updated to {new_type}!")
+    elif choice == "h":
+        new_hp = input("What would you like to change the cards hp level to?: ")
+        cards_info.hp = new_hp
+        session.commit()
+
+        print(f"You card's hp has been sucessfully updated to {new_hp}!")
+    else:
+        print("Please enter a valid character! \n")
+        update_card(session, user)
+
 
 
 
