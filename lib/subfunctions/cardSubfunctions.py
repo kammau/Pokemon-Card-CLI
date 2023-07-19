@@ -1,4 +1,4 @@
-from db.models import Player, Card, Deck
+from db.models import Card
 from sqlalchemy import delete
 
 def commit_card(session, info):
