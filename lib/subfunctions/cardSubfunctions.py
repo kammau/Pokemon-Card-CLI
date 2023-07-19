@@ -1,11 +1,13 @@
-from db.models import Card
+from db.models import Card, Player
 from sqlalchemy import delete
 
 def commit_card(session, info):
     session.add(info)
     session.commit()
 
-def add_new_card(session, user):
+def add_new_card(session, user, menu):
+    username = session.query(Player).get(user)
+
     card_name_in = input("What is your new cards name?: ")
     pokemon_type_in = input("What is the card type?: ")
     hp_in = input("What is the cards hp level?: ")
@@ -13,9 +15,12 @@ def add_new_card(session, user):
     commit_card(session, Card(card_name=card_name_in, pokemon_type=pokemon_type_in, hp=hp_in, player_id=user[0]))
 
     print("Your new card has been sucessfully added!")
-    get_to_main(user)
+    
+    menu(username.username)
 
-def update_card(session, user):
+def update_card(session, user, menu):
+    username = session.query(Player).get(user)
+
     card_id = input("What is the Card ID of the card you would like to update?: ")
     cards_info = (session.query(Card).get(card_id))
     choice = input("What would you like to change/update on this card?: \n"
@@ -44,14 +49,17 @@ def update_card(session, user):
     else:
         print("Please enter a valid character! \n")
         update_card(session, user)
+    
+    menu(username.username)
 
 
+def remove_card(session, user, menu):
+    username = session.query(Player).get(user)
 
-
-
-def remove_card(session, user):
     card_id = input("What is the Card ID of the card you would like to remove?: ")
     card = session.query(Card).get(card_id)
     session.delete(card)
     session.commit()
     print(f"Card {card_id} was deleted from your collection.")
+
+    menu(username.username)

@@ -36,15 +36,15 @@ class PokemonCli:
 
     def main_menu(self, user): 
         print(f"\nWelcome {user}! Please select an option:")
-        options = input('1) Look through card collection \n'
-            '2) Look through Deck collection \n'
-            '3) Quit program \n')
+        options = input('c) Look through Card collection \n'
+            'd) Look through Deck collection \n'
+            'q) Quit program \n')
         
-        if options == "1":
+        if options == "c":
             self.card_collection(user)
-        elif options == "2":
+        elif options == "d":
             self.deck_collection(user)
-        elif options == "3":
+        elif options == "q":
             print(f"Have a good day {user}!")
         else:
             print("Please type a valid number! \n")
@@ -70,11 +70,11 @@ class PokemonCli:
             "(m) Go to Main Menu \n")
         
         if options == "a":
-            add_new_card(session, user_id)
+            add_new_card(session, user_id, self.card_collection)
         elif options == "u":
-            update_card(session, user_id)
+            update_card(session, user_id, self.card_collection)
         elif options == "r":
-            remove_card(session, user_id)
+            remove_card(session, user_id, self.card_collection)
         elif options == "m":
             self.main_menu(user)
             
@@ -83,11 +83,14 @@ class PokemonCli:
     def deck_collection(self, user):
         user_id = [player.id for player in session.query(Player) if player.username == user]
         decks = [deck for deck in session.query(Deck) if deck.player_id in user_id]
-        print(f"Here are all the decks in your collection {user}: \n")
-        for deck in decks:
-            print(f"Deck ID: {deck.id} \n"
-            f"Deck Name: {deck.deck_name} \n"
-            f"Deck Set: {deck.set_name} \n")
+        if len(decks) > 0:
+            print(f"Here are all the decks in your collection {user}: \n")
+            for deck in decks:
+                print(f"Deck ID: {deck.id} \n"
+                f"Deck Name: {deck.deck_name} \n"
+                f"Deck Set: {deck.set_name} \n")
+        else:
+            print("\nLooks like you don't have any decks in your collection!\n")
 
         options = input("What would you like to do next?: \n"
         "(a) Add a Deck \n"
