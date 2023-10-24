@@ -1,4 +1,7 @@
 # Phase-3 Project Pokemon CLI
+
+[Vide Walkthrough](https://youtu.be/B2R2hv8nPQM)
+
 ## Introduction:
 This CLI was created for Pokemon card collectors who are looking for a place to store information about their collection. This CLI is built upon three related tables, Player, Card, and Deck. The Player table is used to store information about the user. Information such as the user's playing level, specific ID to access the user, and the user's username. The Card table stores information about the card's name, who the card belongs to, the HP, and the type of Pokemon on the card. Lastly, the Deck table stores information such as the name of the deck and who the deck belongs to.
 
